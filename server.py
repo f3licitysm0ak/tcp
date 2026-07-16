@@ -15,9 +15,15 @@ print("socket binded to %s" %(port))
 s.listen(5) #is this meaning listen for 5 seconds?
 print("socket listening on port %s" %(port))
 
-while True:
-    c, addr = s.accept()
-    print("Received connection from client")
-    c.send('Hello world, thank you for connecting'.encode()) 
-    c.close()
-    break
+connection, addr = s.accept()
+print("Received connection from client")
+print("Client: %s" %(connection))
+print(f"Client address:{addr}")
+
+connection.send('Hello world, thank you for connecting'.encode())
+
+print(connection.recv(1024).decode())
+connection.close()
+
+
+

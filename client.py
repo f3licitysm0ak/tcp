@@ -2,15 +2,20 @@
 import socket             
 
 # Create a socket object 
-s = socket.socket()         
+c = socket.socket()         
 
 # Define the port on which you want to connect 
 port = 80               
 
 # connect to the server on local computer 
-s.connect(('127.0.0.1', port)) 
+c.connect(('127.0.0.1', port)) 
 
 # receive data from the server and decoding to get the string.
-print (s.recv(1024).decode())
+print ("Server: %s" %(c.recv(1024).decode()))
+
+c.send("Hello server, nice to meet you".encode())
+
+
+
 # close the connection 
-s.close()
+c.close()
