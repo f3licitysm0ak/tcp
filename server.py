@@ -14,15 +14,27 @@ print("socket binded to %s" %(port))
 
 s.listen(5) #is this meaning listen for 5 seconds?
 print("socket listening on port %s" %(port))
-
+capitals = {
+"Mexico": "Mexico City",
+"Japan": "Tokyo",
+"Australia": "Canberra"
+}
 connection, addr = s.accept()
-print("Received connection from client")
-print("Client: %s" %(connection))
-print(f"Client address:{addr}")
 
-connection.send('Hello world, thank you for connecting'.encode())
+while True:
+    connection.send('Enter a country'.encode())
+    country = connection.recv(1024).decode()
+    print(f"Received {country} from client")
 
-print(connection.recv(1024).decode())
+    if country == "exit":
+        break
+    if country in capitals.keys():
+        capital = capitals[country]
+    else:
+        capital = "Country not found"
+        
+    connection.send(f"Capital of {country} is {capital}".encode())
+
 connection.close()
 
 

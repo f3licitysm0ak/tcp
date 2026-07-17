@@ -10,12 +10,15 @@ port = 80
 # connect to the server on local computer 
 c.connect(('127.0.0.1', port)) 
 
-# receive data from the server and decoding to get the string.
-print ("Server: %s" %(c.recv(1024).decode()))
+while True:
+    print(c.recv(1024).decode())
+    country = input("")
+    c.send(country.encode())
 
-c.send("Hello server, nice to meet you".encode())
+    if country == "exit":
+        break
 
+    print(c.recv(1024).decode())
 
-
-# close the connection 
 c.close()
+
