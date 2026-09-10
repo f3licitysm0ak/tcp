@@ -12,7 +12,7 @@ port = 80
 
 s.bind(('',port))
 
-s.listen(5) #is this meaning listen for 5 seconds?
+s.listen(5) 
 print("socket listening on port %s" %(port))
 
 
