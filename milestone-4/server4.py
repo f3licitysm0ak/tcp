@@ -55,5 +55,5 @@ def receive_message(connection):
 
 def send_response(connection, response):
     res = response.encode()
-    connection.send(res)
+    connection.send(res) 
     
